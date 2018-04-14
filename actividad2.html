@@ -19,6 +19,7 @@
       color: #676c7f;
     }
   </style>
+  <!--Se realiza este onload en presionar C para inicializar los valores de la calculadora-->
   <body class="fondoPaginaA" onload="presionarC()">
     <div id="cabecera">
       <img src="imagenes/logo.png" alt="Logo de la UTA">
@@ -73,33 +74,28 @@
       </div>
     </div>
     <script>
-      var listaColores = ["#e8e7e5","khaki","HoneyDew","pink","LightSalmon"];
-      var cont = 0;
-      function contMas() {
-        if(cont < 4){
-        cont++;
-        document.body.style.backgroundColor = listaColores[cont];
-        }
-      }
-      function contMenos() {
-        if(cont > 0){
-          cont--;
-          document.body.style.background = listaColores[cont];
-        }
-      }
-    </script>
-    <script>
+      /*  Función closure que recibe como parámetro un valor que puede ser 1 o -1. 
+      Retorna una función anónima cuyo parámetro es el contenido del input cuyo id es "resultado". A su vez, esta 
+      función retorna la suma entre el valor de la función padre y el contenido señalado anteriormente.
+      */
       function funcionClosure(valor) {
         return function(contenido){
           return valor + contenido;
         }
       }
+      /* Es la función que es llamada cuando se presiona el botón ++ o -- en la calculadora, recibe como parámetro 
+      el valor 1 o -1. Ademaás están defininos las variable resultado, que es el contenido que hay en el input con ID
+      "resuldato", temp que se le asigna el retorno de la función Closure, finalmente tiene una variable aux que es la
+      utilizada para actualizar el contenido del input con ID "resultado".
+      */
       function contadorClosure(param){
         var resultado, temp, aux;
         resultado = parseFloat(document.getElementById("resultado").value);
         temp = funcionClosure(param);
         aux = temp(resultado);
         document.getElementById("resultado").value = aux;
+        /*Este segmento de código es el que se utiliza para cumplir con el requisito de cambiar el estilo CSS de la
+        página cuando se utiliza el contandor*/
         if(aux%2 != 0){
           document.body.classList.remove("fondoPaginaA");
           document.body.classList.add("fondoPaginaB");
