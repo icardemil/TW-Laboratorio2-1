@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>T E C N O H U B - 2</title>
+    <link href="css/estilos.css" rel="stylesheet">
+    <script src="js/calculadora.js"></script>
+  </head>
+  <style media="screen">
+    .fondoPaginaA{
+      background-color: #e8e7e5;
+    }
+    .fondoPaginaB{
+      background-color: LightSalmon;
+    }
+    h1{
+      font-family: Arial;
+      text-decoration: underline;
+      color: #676c7f;
+    }
+  </style>
+  <body class="fondoPaginaA" onload="presionarC()">
+    <div id="cabecera">
+      <img src="imagenes/logo.png" alt="Logo de la UTA">
+    </div>
+    <div id="menu">
+    <ul>
+      <li><a href="index.html">Actividad 1</a></li>
+      <li><a href="actividad2.html">Actividad 2</a></li>
+      <li><a href="actividad3.html">Actividad 3</a></li>
+    </ul>
+    </div>
+    <div class="bloque-web">
+      <h1>C A L C U L A D O R A</h1>
+      <div class="base-calc">
+        <span>
+            <button  class="c-tecla" type="button" onclick="presionarC()">CE</button>
+            <input id="resultado" type="text" placeholder="0" style="text-align:center; border: none; border-radius: 5px" readonly/>
+            <br>
+        </span>
+        <span>
+            <button id="nueve" class="num-tecla" type="button" onclick="insertarNumero('9')">9</button>
+            <button id="ocho" class="num-tecla" type="button" onclick="insertarNumero('8')">8</button>
+            <button id="siete" class="num-tecla" type="button" onclick="insertarNumero('7')">7</button>
+            <button id="mas" class="op-tecla" type="button" onclick="insertarOperacion(1)">+</button>
+            <br>
+        </span>
+        <span>
+            <button id="cuatro" class="num-tecla" type="button" onclick="insertarNumero('4')">4</button>
+            <button id="cinco" class="num-tecla" type="button" onclick="insertarNumero('5')">5</button>
+            <button id="seis" class="num-tecla" type="button" onclick="insertarNumero('6')">6</button>
+            <button id="menos" class="op-tecla" type="button" onclick="insertarOperacion(2)">-</button>
+            <br>
+        </span>
+        <span>
+            <button id="tres" class="num-tecla" type="button" onclick="insertarNumero('3')">3</button>
+            <button id="dos" class="num-tecla" type="button" onclick="insertarNumero('2')">2</button>
+            <button id="uno" class="num-tecla" type="button" onclick="insertarNumero('1')">1</button>
+            <button id="division" class="op-tecla" type="button" onclick="insertarOperacion(4)">/</button>
+            <br>
+        </span>
+        <span>
+            <button id="cero" class="num-tecla" type="button" onclick="insertarNumero('0')">0</button>
+            <button id="punto" class="num-tecla" type="button" onclick="insertarComa()">.</button>
+            <button id="iguols"class="ig-tecla" type="button" onclick="obtenerResultado()">=</button>
+            <button id="multiplicacion" class="op-tecla" type="button" onclick="insertarOperacion(3)">x</button>
+            <br>
+        </span>
+        <span>
+            <button id="contMas" class="cont-tecla" type="button" onclick="contadorClosure(1)">++</button>
+            <button id="contMenos" class="cont-tecla"type="button" onclick="contadorClosure(-1)">--</button>
+        </span>
+      </div>
+    </div>
+    <script>
+      var listaColores = ["#e8e7e5","khaki","HoneyDew","pink","LightSalmon"];
+      var cont = 0;
+      function contMas() {
+        if(cont < 4){
+        cont++;
+        document.body.style.backgroundColor = listaColores[cont];
+        }
+      }
+      function contMenos() {
+        if(cont > 0){
+          cont--;
+          document.body.style.background = listaColores[cont];
+        }
+      }
+    </script>
+    <script>
+      function funcionClosure(valor) {
+        return function(contenido){
+          return valor + contenido;
+        }
+      }
+      function contadorClosure(param){
+        var resultado, temp, aux;
+        resultado = parseFloat(document.getElementById("resultado").value);
+        temp = funcionClosure(param);
+        aux = temp(resultado);
+        document.getElementById("resultado").value = aux;
+        if(aux%2 != 0){
+          document.body.classList.remove("fondoPaginaA");
+          document.body.classList.add("fondoPaginaB");
+        }
+        else{
+          document.body.classList.remove("fondoPaginaB");
+          document.body.classList.add("fondoPaginaA");
+        }
+      }
+    </script>
+  </body>
+</html>

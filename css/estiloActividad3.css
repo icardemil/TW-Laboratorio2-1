@@ -1,0 +1,23 @@
+body{
+    background-color: black;
+    padding: 15px;
+}
+tr,th,td{
+    color: white;
+    font-family: monospace, consolas;
+    font-size: 20px;
+}
+table,th,td{
+    border: 1px solid gray;
+    border-collapse: collapse;
+    margin: 0 auto;
+    margin-bottom: 50px;    
+}
+th{
+    text-align: center;
+}
+h1{
+    text-align: center;
+    color: white;
+    font-family: monospace, consolas;
+}
