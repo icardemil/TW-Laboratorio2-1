@@ -20,9 +20,6 @@ function insertarComa() {
     if(valorEnPantalla%1===0){
       valorEnPantalla += '.';
     }
-    else{
-      console.log("no mas wey");
-    }
   }
   updateInput();
 }
